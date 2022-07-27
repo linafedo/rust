@@ -6,9 +6,6 @@ pub fn vec() {
     v.push(100);
     println!("{}", v.last().unwrap_or(&0));
 
-    let third = v[2];
-
-    println!("{third}");
     for i in &v {
         println!("{}", i);
     }
@@ -16,7 +13,7 @@ pub fn vec() {
     let option = v.get(2);
     match option {
         None => println!("Value  is nil"),
-        Some(option) => println!("value is {option}")
+        Some(_option) => println!("value is {_option}")
     }
 }
 
@@ -32,7 +29,7 @@ pub struct Vector {
 
 impl Vector {
     fn create_vec() {
-        let mut vector = Vector {
+        let mut _vector = Vector {
             vec: vec![
                 TypeForVector::Float(77.9),
                 TypeForVector::String("ttt".to_string()),
@@ -43,14 +40,14 @@ impl Vector {
     pub fn get_str() {
         let string = "Здравствуйте";
         // let str = &string[0..1]; /// error
-        let str = &string[0..2];
-        println!("{str}");
+        let _str = &string[0..2];
+        println!("{_str}");
 
-        for char in &mut string.chars() {
-            println!("{char}")
+        for _char in &mut string.chars() {
+            println!("{_char}")
         }
-        for char in &mut string.bytes() {
-            println!("{char}")
+        for _char in &mut string.bytes() {
+            println!("{_char}")
         }
     }
 }
