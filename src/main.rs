@@ -6,12 +6,14 @@ use crate::enums::{Car, Coin, CoinItem, handle_option, Person};
 use crate::fibonacci_number::get_fibonacci_number;
 use crate::guess_task::guess_task;
 use crate::structures::{print_area_for_size, Size};
+use crate::vec::{get_mediana, get_mid_value, map, vec, Vector};
 
 mod guess_task;
 mod convert_fahrenheit_to_celsius;
 mod fibonacci_number;
 mod structures;
 mod enums;
+mod vec;
 
 fn main() {
     // 1
@@ -47,4 +49,10 @@ fn main() {
     handle_option(Option::None);
 
 
+    //6
+    let middle = get_mid_value(vec![15,2,3,4,5,4,3,8,5,13]);
+    println!("middle is {middle}");
+
+    let mediana = get_mediana(&mut vec![33,23,11,2,1,55,234,5]);
+    println!("{:?}", mediana);
 }
