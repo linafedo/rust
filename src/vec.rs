@@ -1,5 +1,9 @@
+use std::borrow::BorrowMut;
+use std::cmp::max;
 use std::fmt::format;
 use std::collections::HashMap;
+use std::str::Chars;
+use std::io;
 
 pub fn vec() {
     let mut v = vec![1, 2, 3];
@@ -91,6 +95,61 @@ pub fn get_mediana(vec: &mut Vec<i32>) -> Option<i32> {
         }
     }
     mediana
+}
+
+pub  fn get_mode_of_list(vec: Vec<i32>) -> Vec<i32> {
+    let mut modes: Vec<i32> = Vec::new();
+    let mut max_count = 0;
+    let mut map: HashMap<i32, i32> = HashMap::new();
+    for item in vec {
+        let mut count = map.entry(item).or_insert(0);
+        *count += 1;
+    }
+    for  (key, value) in map.iter(){
+        if modes.is_empty() {
+            max_count = *value;
+            modes.push(*key);
+        } else if max_count == *value {
+            modes.push(*key);
+        } else if  max_count < *value{
+            modes.clear();
+            max_count = *value;
+            modes.push(*key);
+        }
+    }
+    modes
+}
+
+pub fn pig_latin_transform() {
+    println!("Enter words");
+
+    let mut str = String::new();
+    io::stdin()
+        .read_line(&mut str)
+        .expect("Failed to read line");
+
+    if str.is_empty() || !str.is_ascii() {
+        println!("String must be not empty");
+        return
+    };
+
+    let mut new_str = String::new();
+    let vowels = vec!['a', 'e', 'i', 'o', 'u', 'y'];
+
+    for word in str.split_whitespace() {
+        let first_char = &word.chars().nth(0).unwrap();
+
+        if vowels.contains(first_char) {
+            let new_word = format!("{}{}", word, "-hay");
+            new_str = format!("{} {}", new_str, new_word);
+        } else {
+            let mut word = word.to_string();
+            let first = word.remove(0);
+            let new_word = format!("{}{}{}{}", word, "-", first, "ay");
+            new_str = format!("{} {}", new_str, new_word);
+        }
+    }
+    println!("{new_str}");
 }
 
 
