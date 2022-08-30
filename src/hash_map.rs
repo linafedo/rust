@@ -19,7 +19,7 @@ impl Employees {
     }
 
     pub fn add_employer(&mut self, name: String, department: Department) {
-        let mut employees = self.employees.get_mut(&department);
+        let employees = self.employees.get_mut(&department);
         match employees {
             None => {
                 println!("list wos create and {name} is added to {department:?} department");

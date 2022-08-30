@@ -1,12 +1,9 @@
-extern crate core;
-
+use std::borrow::BorrowMut;
 use std::collections::HashMap;
+use std::ops::Deref;
 use std::ptr::null;
-use crate::convert_fahrenheit_to_celsius::convert_fahrenheit_to_celsius;
-use crate::enums::{Car, Coin, CoinItem, handle_option, Person};
-use crate::fibonacci_number::get_fibonacci_number;
-use crate::guess_task::guess_task;
-use crate::structures::{print_area_for_size, Size};
+use crate::shirt_inventory::{Inventory, ShirtColor};
+use std::rc::Rc;
 
 mod guess_task;
 mod convert_fahrenheit_to_celsius;
@@ -15,6 +12,14 @@ mod structures;
 mod enums;
 mod vec;
 mod hash_map;
+mod life_time;
+mod rectangle;
+mod shirt_inventory;
+mod ref_cell;
+mod retain_cycle;
+mod weak_reference;
+mod thread;
+mod mutex;
 
 fn main() {
     // 1
@@ -71,26 +76,57 @@ fn main() {
 
     // vec::pig_latin_transform();
 
-    let mut employees = hash_map::Employees::new();
-    employees.add_employer(
-        String::from("Egor"),
-        hash_map::Department::Sales
-    );
-    employees.add_employer(
-        String::from("Galina"),
-        hash_map::Department::Sales
-    );
-    employees.add_employer(
-        String::from("Max"),
-        hash_map::Department::Management
-    );
-    employees.add_employer(
-        String::from("Alex"),
-        hash_map::Department::Management
-    );
+    // let mut employees = hash_map::Employees::new();
+    // employees.add_employer(
+    //     String::from("Egor"),
+    //     hash_map::Department::Sales
+    // );
+    // employees.add_employer(
+    //     String::from("Galina"),
+    //     hash_map::Department::Sales
+    // );
+    // employees.add_employer(
+    //     String::from("Max"),
+    //     hash_map::Department::Management
+    // );
+    // employees.add_employer(
+    //     String::from("Alex"),
+    //     hash_map::Department::Management
+    // );
+    //
+    // employees.get_employers(hash_map::Department::Sales);
+    // employees.get_employers(hash_map::Department::Marketing);
+    //
+    // println!("{:?}", employees.get_all_employees());
 
-    employees.get_employers(hash_map::Department::Sales);
-    employees.get_employers(hash_map::Department::Marketing);
+    //7
 
-    println!("{:?}", employees.get_all_employees());
+    // let inventory = Inventory{
+    //     shirts: vec![ShirtColor::Blue, ShirtColor::Red, ShirtColor::Blue]
+    // };
+    // let giveaway1 = inventory.giveaway(Some(ShirtColor::Red));
+    // println!("color for shirt is {giveaway1:?}");
+    //
+    // let giveaway2 = inventory.giveaway(None);
+    // println!("color for shirt is {giveaway2:?}");
+    //
+    // let list = vec![1,2,3,4];
+    // let only_borrow = || println!("{list:?}");
+    // println!("{list:?}");
+    // only_borrow();
+    // println!("{list:?}");
+
+    // 8
+
+    // ref_cell::create_ref_cell()
+    // retain_cycle::retain_cycle()
+    // weak_reference::use_weak_ref()
+
+    // 9
+    // thread::create_new_thread()
+    // thread::move_prop()
+    // thread::create_channel()
+
+    mutex::create_mutex()
 }
+
